@@ -1,4 +1,4 @@
-package com.ledok.spring.security.userservice.jpa.entity;
+package com.ledok.spring.security.userservice.persistence.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

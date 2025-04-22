@@ -1,14 +1,14 @@
 package com.ledok.spring.security.userservice.service;
 
 import com.ledok.spring.security.userservice.advice.UserNotFoundException;
-import com.ledok.spring.security.userservice.feign.order.OrderClient;
-import com.ledok.spring.security.userservice.feign.order.dto.CreateOrderRequest;
-import com.ledok.spring.security.userservice.feign.order.dto.DeliveryDateRequest;
-import com.ledok.spring.security.userservice.feign.order.dto.OrderDto;
-import com.ledok.spring.security.userservice.feign.order.dto.OrderSummaryDto;
-import com.ledok.spring.security.userservice.feign.product.dto.ProductDto;
-import com.ledok.spring.security.userservice.jpa.entity.UserEntity;
-import com.ledok.spring.security.userservice.jpa.repository.UserRepository;
+import com.ledok.spring.security.userservice.gateway.order.OrderClient;
+import com.ledok.spring.security.userservice.gateway.order.dto.CreateOrderRequest;
+import com.ledok.spring.security.userservice.gateway.order.dto.DeliveryDateRequest;
+import com.ledok.spring.security.userservice.gateway.order.dto.OrderDto;
+import com.ledok.spring.security.userservice.gateway.order.dto.OrderSummaryDto;
+import com.ledok.spring.security.userservice.gateway.product.dto.ProductDto;
+import com.ledok.spring.security.userservice.persistence.entity.UserEntity;
+import com.ledok.spring.security.userservice.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,10 +21,12 @@ import java.util.Optional;
 public class OrderServiceImpl implements OrderService {
     private final OrderClient orderClient;
     private final UserRepository userRepository;
+    private final UserAuthentication userAuthentication;
 
     @Override
     @Transactional
-    public OrderDto createOrder(String username,CreateOrderRequest createOrderDto) {
+    public OrderDto createOrder(CreateOrderRequest createOrderDto) {
+        String username = userAuthentication.getUsername();
        UserEntity user = userRepository.findByUsername(username).orElseThrow(()-> new UserNotFoundException("Пользователь не существует"));
        Long userId = user.getId();
            return orderClient.createOrder(userId,createOrderDto).getBody();
@@ -38,7 +40,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public List<OrderDto> getAllOrdersByUserId(String username) {
+    public List<OrderDto> getAllOrdersByUserId() {
+        String username = userAuthentication.getUsername();
         Optional <UserEntity> user = userRepository.findByUsername(username);
         Long userId = user.get().getId();
         return orderClient.getOrdersByUser(userId).getBody();
@@ -46,7 +49,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public List <ProductDto> getOrderedProductsByUser(String username) {
+    public List <ProductDto> getOrderedProductsByUser() {
+        String username = userAuthentication.getUsername();
         Optional <UserEntity> user = userRepository.findByUsername(username);
         Long userId = user.get().getId();
         return orderClient.getOrderedProductsByUser(userId).getBody();
@@ -54,7 +58,8 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     @Transactional
-    public OrderSummaryDto getOrderSummaryById(String username, String period) {
+    public OrderSummaryDto getOrderSummaryById(String period) {
+        String username = userAuthentication.getUsername();
         Optional <UserEntity> user = userRepository.findByUsername(username);
         Long userId = user.get().getId();
         return orderClient.getOrderSummary(userId, period).getBody();

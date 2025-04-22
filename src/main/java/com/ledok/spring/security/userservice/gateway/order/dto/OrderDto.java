@@ -1,6 +1,6 @@
-package com.ledok.spring.security.userservice.feign.order.dto;
+package com.ledok.spring.security.userservice.gateway.order.dto;
 
-import com.ledok.spring.security.userservice.feign.order.OrderStatus;
+import com.ledok.spring.security.userservice.gateway.order.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

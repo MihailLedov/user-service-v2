@@ -1,7 +1,7 @@
 package com.ledok.spring.security.userservice.service;
 
-import com.ledok.spring.security.userservice.jpa.entity.UserEntity;
-import com.ledok.spring.security.userservice.jpa.repository.UserRepository;
+import com.ledok.spring.security.userservice.persistence.entity.UserEntity;
+import com.ledok.spring.security.userservice.persistence.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;

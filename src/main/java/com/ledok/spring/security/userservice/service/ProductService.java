@@ -1,7 +1,7 @@
 package com.ledok.spring.security.userservice.service;
 
-import com.ledok.spring.security.userservice.feign.product.dto.ProductDto;
-import com.ledok.spring.security.userservice.feign.product.dto.ProductFilter;
+import com.ledok.spring.security.userservice.gateway.product.dto.ProductDto;
+import com.ledok.spring.security.userservice.gateway.product.dto.ProductFilter;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

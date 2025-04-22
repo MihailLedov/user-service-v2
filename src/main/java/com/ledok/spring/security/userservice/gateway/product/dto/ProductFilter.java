@@ -1,4 +1,4 @@
-package com.ledok.spring.security.userservice.feign.product.dto;
+package com.ledok.spring.security.userservice.gateway.product.dto;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package com.ledok.spring.security.userservice.feign.order;
+package com.ledok.spring.security.userservice.gateway.order;
 
 public enum OrderStatus {
     CREATED, PROCESSING, COMPLETED, CANCELLED

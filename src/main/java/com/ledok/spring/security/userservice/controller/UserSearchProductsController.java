@@ -1,8 +1,8 @@
 package com.ledok.spring.security.userservice.controller;
 
 
-import com.ledok.spring.security.userservice.feign.product.dto.ProductDto;
-import com.ledok.spring.security.userservice.feign.product.dto.ProductFilter;
+import com.ledok.spring.security.userservice.gateway.product.dto.ProductDto;
+import com.ledok.spring.security.userservice.gateway.product.dto.ProductFilter;
 import com.ledok.spring.security.userservice.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

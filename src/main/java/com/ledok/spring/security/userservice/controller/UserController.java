@@ -30,7 +30,7 @@ public class UserController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity<UserDto> getUserById(@PathVariable long id) {
+    public ResponseEntity<UserDto> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(userService.getUserById(id));
     }
 
@@ -49,8 +49,8 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(updateDto));
     }
 
-    @DeleteMapping("/{id}/delete")
-    public ResponseEntity<UserDto> deleteUser(@PathVariable long id) {
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<UserDto> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build();
     }

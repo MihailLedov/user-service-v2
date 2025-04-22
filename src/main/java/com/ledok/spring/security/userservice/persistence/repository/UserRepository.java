@@ -1,6 +1,6 @@
-package com.ledok.spring.security.userservice.jpa.repository;
+package com.ledok.spring.security.userservice.persistence.repository;
 
-import com.ledok.spring.security.userservice.jpa.entity.UserEntity;
+import com.ledok.spring.security.userservice.persistence.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

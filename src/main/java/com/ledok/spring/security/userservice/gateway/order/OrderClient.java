@@ -1,10 +1,10 @@
-package com.ledok.spring.security.userservice.feign.order;
+package com.ledok.spring.security.userservice.gateway.order;
 
-import com.ledok.spring.security.userservice.feign.order.dto.CreateOrderRequest;
-import com.ledok.spring.security.userservice.feign.order.dto.DeliveryDateRequest;
-import com.ledok.spring.security.userservice.feign.order.dto.OrderDto;
-import com.ledok.spring.security.userservice.feign.order.dto.OrderSummaryDto;
-import com.ledok.spring.security.userservice.feign.product.dto.ProductDto;
+import com.ledok.spring.security.userservice.gateway.order.dto.CreateOrderRequest;
+import com.ledok.spring.security.userservice.gateway.order.dto.DeliveryDateRequest;
+import com.ledok.spring.security.userservice.gateway.order.dto.OrderDto;
+import com.ledok.spring.security.userservice.gateway.order.dto.OrderSummaryDto;
+import com.ledok.spring.security.userservice.gateway.product.dto.ProductDto;
 import jakarta.validation.Valid;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;

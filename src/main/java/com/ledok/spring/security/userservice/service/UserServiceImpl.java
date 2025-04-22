@@ -5,8 +5,8 @@ import com.ledok.spring.security.userservice.advice.UserNotFoundException;
 import com.ledok.spring.security.userservice.controller.dto.RegisterRequest;
 import com.ledok.spring.security.userservice.controller.dto.UpdateDto;
 import com.ledok.spring.security.userservice.controller.dto.UserDto;
-import com.ledok.spring.security.userservice.jpa.entity.UserEntity;
-import com.ledok.spring.security.userservice.jpa.repository.UserRepository;
+import com.ledok.spring.security.userservice.persistence.entity.UserEntity;
+import com.ledok.spring.security.userservice.persistence.repository.UserRepository;
 import com.ledok.spring.security.userservice.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,12 +30,8 @@ public class UserServiceImpl implements UserService {
             throw new UserAlreadyExistsException("Имя пользователя уже существует");
         }
 
-        UserEntity user = new UserEntity();
-        user.setUsername(registerRequest.getUsername());
-        user.setPassword(passwordEncoder.encode(registerRequest.getPassword()));
-        user.setEmail(registerRequest.getEmail());
-        user.setRole("USER");
-        user.setActive(true);
+        UserEntity user = userMapper.toEntity(registerRequest,passwordEncoder);
+
         userRepository.save(user);
         return userMapper.toDto(user);
     }
